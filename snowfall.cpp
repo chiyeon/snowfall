@@ -1,11 +1,14 @@
-#include <stdlib.h>	// srand n rand
+#include <stdlib.h>		// srand n rand
 #include <cstdio>		// I/O
 #include <time.h>		// time()
+//#include <cstdlib>		// clear the screen
 
 #ifdef _WIN32
 #include <windows.h>
+#define CLEAR "cls"
 #else
 #include <unistd.h>
+#define CLEAR "clear"
 #endif					// for clearing the screen
 
 using namespace std;
@@ -34,11 +37,7 @@ int main() {
 	srand (time(0));
 	
 	for(;;) {
-		#ifdef _WIN32
-		system("cls");
-		#else
-		system("clear");
-		#endif
+		system(CLEAR);
 		printf("             > snowfall <\n");
 		
 		// iterate through each character in the map
