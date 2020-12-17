@@ -37,7 +37,10 @@ int main() {
 	srand (time(0));
 	
 	for(;;) {
+		sleep(1);	
+		
 		system(CLEAR);
+		
 		printf("             > snowfall <\n");
 		
 		// iterate through each character in the map
