@@ -37,7 +37,11 @@ int main() {
 	srand (time(0));
 	
 	for(;;) {
-		sleep(1);	
+		#ifdef _WIN32
+		Sleep(1);
+		#else
+		sleep(1);
+		#endif
 		
 		system(CLEAR);
 		
