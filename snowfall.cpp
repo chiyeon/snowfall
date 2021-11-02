@@ -1,98 +1,57 @@
-#include <stdlib.h>		// srand n rand
-#include <cstdio>		// I/O
-#include <time.h>		// time()
-//#include <cstdlib>		// clear the screen
-
-#ifdef _WIN32
+#include <cstdlib>					// srand, rand, cls
+#include <cstdio>					// I/O
+#include <time.h>					// time
+#ifdef _WIN32			
 #include <windows.h>
-#define CLEAR "cls"
+#define CLS system("cls")
 #else
 #include <unistd.h>
-#define CLEAR "clear"
-#endif					// for clearing the screen
-
-using namespace std;
-
-char world[14][40] = {
-	"_______________________________________",
-	"|                                     |",
-	"|                                     |",
-	"|                                     |",
-	"|                                     |",
-	"|                                     |",
-	"|                                     |",
-	"|                            __       |",
-	"|                           /  \\      |",
-	"|                          /    \\     |",
-	"|                         /      \\    |",
-	"|       ______           /        \\___|",
-	"|______/      \\_________/             |",
-	"|_____________________________________|"
+#define CLS system("clear")
+#endif								// for clearing the screen
+#include <chrono>					// sleeping
+#include <thread>
+// config
+int sleepDuration = 750, snowflakeSpawnChance = 3;			// sleepDuration: ms between frames; spawn chance: % chance per tile to spawn *
+char world[14][122] = {										// is actually 10 x 40, muiltiply each by 3
+	"╔══════════════════════════════════════╗\n",
+	"║                                      ║\n",
+	"║                                      ║\n",
+	"║                                      ║\n",
+	"║                                      ║\n",
+	"║                                      ║\n",
+	"║                                      ║\n",
+	"║                                      ║\n",
+	"║                                      ║\n",
+	"║          ████████                    ║\n",
+	"║      ██████████████████        ███   ║\n",
+	"║ ████████████████████████████████████ ║\n",
+	"║ ████████████████████████████████████ ║\n",
+	"╚══════════════════════════════════════╝\n"
 };
 
 int main() {
-	
-	printf("enjoy the shnow :)\n\n");
-	
 	srand (time(0));
-	
+	printf("enjoy the shnow :)\n\n");
 	for(;;) {
-		#ifdef _WIN32
-		Sleep(1);
-		#else
-		sleep(1);
-		#endif
-		
-		system(CLEAR);
-		
-		printf("             > snowfall <\n");
-		
-		// iterate through each character in the map
-		for(int y = 14; y > 0; y--) {
-			for(int x = 39; x > 0; x--) {
-				// render each character
-				int printX = 39 - x;
-				int printY = 14 - y;
-				printf("%c", world[printY][printX]);
-				
-				// new line when necessary
-				if(printX == 38)
-					printf("\n");
-				
-				// randomly spawn snowflakes on the top row
-				if(y == 1) {
-					if(world[y][x] != '|') {
-						if(rand() % 35 == 0) {
-							world[y][x] = '*';
-							continue;
-						}
-					}
-				}
-				
-				// character logic
+		std::this_thread::sleep_for(std::chrono::milliseconds(sleepDuration));
+		CLS;
+		printf("              » snowfall «\n");
+		for(int y = 14; y > 0; y--) {										// iterate thru map
+			for(int x = 0; x < 122; x++) {									
 				switch(world[y][x]) {
-					case 'v': world[y][x] = '_'; break;		// _ hit particle. reverts back to original state
-					case '>': world[y][x] = '/'; break;		// / hit particle. reverts back to original state
-					case '<': world[y][x] = '\\'; break;	// \ hit particle. reverts back to original state
-					case '*':		// snowflake. Falls down gradually, causes impact particles.
+					case 'v': world[y][x] = ' '; break;						// dissolve hit particle
+					case '*':
 						world[y][x] = ' ';
-						if(world[y+1][x] == ' ') {
-							world[y+1][x] = '*';
-						} else {
-							world[y][x] = ' ';
-							if(world[y+1][x] == '_') {
-								world[y+1][x] = 'v';
-							} else if(world[y+1][x] == '/') {
-								world[y+1][x] = '>';
-							} else if(world[y+1][x] == '\\') {
-								world[y+1][x] = '<';
-							}
-						}
+						if(world[y+1][x] == ' ') world[y+1][x] = '*';		// move down when space
+						else world[y][x] = 'v';								// particles when not
 						break;
 				}
+
+				printf("%c", world[14 - y][x]);								// print character
+				// if top row && within x bounds && chance && no snowflake below...spawn a snowflake!
+				if(y == 1 && x > 3 && x < 40 && rand() % 100 < snowflakeSpawnChance && world[y+1][x] != '*') world[y][x] = '*';
 			}
 		}
 	}
 	return 0;
-}
-// don't forget to make kanye with brandon in ds3
+} // don't forget to make kanye with brandon in ds3
