@@ -1,6 +1,7 @@
 # snowfall
-a little program that simulates snowfall in 100 lines, right in your terminal !
+a little program that simulates snowfall in about 30 lines, right in your terminal !
 
-runs best on linux :-)
+for gnu/linux
 
-![snowfall demo](https://i.imgur.com/zqn8Rdo.png)
+### preview
+![snowfall preview](./preview.png)
