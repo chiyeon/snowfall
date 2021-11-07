@@ -3,57 +3,53 @@
 #include <time.h>					// time
 #include <chrono>					// sleeping
 #include <thread>
-#include <iostream>
-// config
-int sleepDuration = 750, snowflakeSpawnChance = 3;			// sleepDuration: ms between frames; spawn chance: % chance per tile to spawn *
-char world[14][122] = {										// is actually 10 x 40, muiltiply each by 3
-	"╔══════════════════════════════════════╗\n",
-	"║                                      ║\n",
-	"║                                      ║\n",
-	"║                                      ║\n",
-	"║                                      ║\n",
-	"║                                      ║\n",
-	"║                                      ║\n",
-	"║                                      ║\n",
-	"║                                      ║\n",
-	"║          ########                    ║\n",
-	"║      ##################        ###   ║\n",
-	"║ #################################### ║\n",
-	"║ #################################### ║\n",
-	"╚══════════════════════════════════════╝\n"
-};
+//config
+int sleepDuration = 100, snowflakeSpawnChance = 3, worldWidth = 80, worldHeight = 30;		// sleepDuration: ms between frames; spawn chance: % chance per tile to spawn *
 int main() {
 	srand (time(0));
 	printf("enjoy the shnow :)\n\n");
+	char world[worldHeight][worldWidth];
+	for(int y = 0; y < worldHeight; y++) {
+		for(int x = 0; x < worldWidth; x++) {
+			world[y][x] = x == worldWidth - 1 ? '\n' : ' ';
+		}
+	}
 	for(;;) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(sleepDuration));
 		system("clear");
-		printf("              » snowfall «\n");
-		for(int y = 14; y > 0; y--) {										// iterate thru map
-			for(int x = 0; x < 122; x++) {									
+		for(int y = worldHeight; y > 0; y--) {										// iterate thru map
+			for(int x = 0; x < worldWidth; x++) {								
 				switch(world[y][x]) {
-					case 'v': world[y][x] = ' '; break;						// dissolve hit particle
+					case '.':
 					case '*':
+					case 'o':
+						if(world[y+1][x] == ' ') {
+							world[y+1][x] = world[y][x];
+							world[y][x] = ' ';
+						}
+						break;
+						/*
 						world[y][x] = ' ';
 						if(world[y+1][x] == ' ') world[y+1][x] = '*';		// move down when space
-						//if(world[y+1][x] == '') world[y][x] = '▄';								// particles when not
-						break;
-					case '#':
-						world[y][x] = '█';
-						break;
+						if(world[y+1][x] == '#') world[y][x] = '.';			// particles when not
+						if(world[y+1][x] == '.') world[y+1][x] = '#'; */
 				}
-
-				//if((int)world[y][x] == -30)
-				//	world[y][x] = ' ';
-
-				//printf("%c", world[14 - y][x]);								// print character
-				std::cout << world[14-y][x];
+				printf("%c", world[worldHeight - y][x]);								// print character
 				// if top row && within x bounds && chance && no snowflake below...spawn a snowflake!
-				if(y == 1 && x > 3 && x < 40 && rand() % 100 < snowflakeSpawnChance && world[y+1][x] != '*') world[y][x] = '*';
+				//if(y == 1 && x > 3 && x < 40 && rand() % 100 < snowflakeSpawnChance && world[y+1][x] != '*') world[y][x] = '*';
+				//if(y == 1 && x > 3 && x < 40 && world[y+1][x] == ' ' && rand() % 100 < snowflakeSpawnChance) world[y][x] = rand() % 2 == 0 ? '*' : 'o';
+				if(y == 1 && x > 0 && x < worldWidth && world[y+1][x] == ' ' && rand() % 100 < snowflakeSpawnChance) {
+					int c = rand() % 2;
+					if(c == 0) {
+						world[y][x] = '*';
+					} else if(c == 1) {
+						world[y][x] = '.';
+					} else {
+						world[y][x] = 'o';
+					}
+				}
 			}
 		}
-		printf("thing: |%c%c%c|", world[0][0], world[0][1], world[0][2]);			//test = false;
-		printf("thing2: %d", int(world[0][0]));
 	}
 	return 0;
 } // don't forget to make kanye with brandon in ds3
