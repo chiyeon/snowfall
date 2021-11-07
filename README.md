@@ -6,7 +6,7 @@ a little program that simulates snowfall in about 30 lines, right in your gnu/li
 # configuration
 snowfall can be adjusted with 4 additional arguments when running
 
-all are not required to run, but whichever ones are used must be in order
+all are not required to run, but whichever ones are used must be in order. any arguments not specified will be its default value
 
 ### arguments
  - world width (number of chars in x direction)
