@@ -15,12 +15,10 @@ int main() {
 		for(int i = worldHeight * worldWidth; i > 0; i--) {			// iterate (backwards to make snow fall properly)
 			printf("%c", world[worldHeight * worldWidth - i]);		// render map (backwards to reverse loop)
 			switch(world[i]) {
-				case '*':
-				case '+':
-				case '.':											// make snowflakes fall & stack
-					int c = rand() % 3 - 1;
-					if(world[i + worldWidth + c] == ' ') {
-						world[i + worldWidth + c] = world[i];
+				case '*': case '+': case '.':						// make snowflakes fall & stack
+					int dir = rand() % 3 - 1;
+					if(world[i + worldWidth + dir] == ' ') {
+						world[i + worldWidth + dir] = world[i];
 						world[i] = ' ';
 					}
 					break;
