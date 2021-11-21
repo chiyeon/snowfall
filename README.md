@@ -2,7 +2,6 @@
 a little program that simulates snowfall in about 30 lines, right in your gnu/linux terminal !
 
 this also works for MacOS (tested on an m1 macbook air), but it must be recompiled first!
-I also had issues with not using {} in the case statement, I will amend this in the future!
 
 ![snowfall preview](./imgs/preview.png)
 
