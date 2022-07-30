@@ -1,11 +1,10 @@
-echo "Checking for previous versions"
-
 echo "Compiling snowfall.c"
 gcc snowfall.c -o snowfall
 
 if [ "$1" == "-l" ]; then
 	echo "Installing locally"
-	
+
+	echo "Checking for previous versions"
 	if [ -f $HOME/.local/share/snowfall ]; then
 		echo "Uninstalling existing version"
 		./uninstall.sh "-l"
@@ -21,6 +20,7 @@ else
 	echo "Installing globally"
 	echo "Want to install locally, without sudo? Run with '-l'."
 
+	echo "Checking for previous versions"
 	if [ -f /usr/local/bin/snowfall ]; then
 		echo "Uninstalling existing version"
 		./uninstall.sh
