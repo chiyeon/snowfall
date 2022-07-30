@@ -25,7 +25,7 @@ Simply run the `install.sh` script to install snowfall to `/usr/local/bin`.
 
 If installing locally without sudo, add the `-l` flag to the `install.sh` script to install it in `$HOME/.local/share` instead.
 
-Note: Either of these directories should be in your $PATH! If all else fails, running the install script should leave an executable file simply named `snowfall` in the git directory. Run it with `./snowfall`!
+Note: Either of these directories should be in your `$PATH`! If all else fails, running the install script should leave an executable file simply named `snowfall` in the git directory. Run it with `./snowfall`!
 
 # configuration
 Snowfall has a total of four optional arguments. Run with the help flag (`snowfall -h` or `snowfall --help`) to view the help menu. The flags are case-sensitive!
