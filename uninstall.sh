@@ -1,9 +1,9 @@
-if [ "$1" == "-g" ]; then
-	echo "Uninstalling globally"
-	sudo rm /usr/bin/snowfall
-else
+if [ "$1" == "-l" ]; then
 	echo "Uninstalling locally"
 	rm $HOME/.local/share/snowfall
+else
+	echo "Uninstalling globally"
+	sudo rm /usr/local/bin/snowfall
 fi
 
 echo "Done."
