@@ -1,6 +1,3 @@
-# snowfall
-snowfall in your terminal!
-
 ```
 
                                                            +                  *
@@ -19,6 +16,8 @@ snowfall in your terminal!
  **. ****.+***+.** +* *   +...*+*+ ***+ . *.+. ****++++* *+...*+.+*.* *+ * +.**
 .*++**.***+.**.+.**.****+****++.*.+*****.+.*++*...**+*+*+***+*******.+*+++.*..+
 ```
+
+A simple snow-simulation in your terminal! Run and watch as the snow piles up, forming a comforting, even snowscape. Now customizable with optional arguments!
 
 # Installation
 Simply run the `install.sh` script to install snowfall to `/usr/local/bin`. 
