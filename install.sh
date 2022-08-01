@@ -12,7 +12,7 @@ if [ "$1" == "-l" ]; then
 
 	echo "Installing to $HOME/.local/share"
 	{
-		mv snowfall $HOME/.local/share/ && echo "Done. Run 'snowfall' to begin, and add '-h' to see more!"
+		cp snowfall $HOME/.local/share/ && echo "Done. Run 'snowfall' to begin, and add '-h' to see more!"
 	} || {
 		echo "Unable to move to $HOME/.local/share. Run locally with './snowfall', and add '-h' to see more!"
 	}
@@ -28,7 +28,7 @@ else
 
 	echo "Installing to /usr/local/bin"
 	{
-		sudo mv snowfall /usr/local/bin/ && echo "Done. Run 'snowfall' to begin, or add '-h' to see more!"
+		sudo cp snowfall /usr/local/bin/ && echo "Done. Run 'snowfall' to begin, or add '-h' to see more!"
 	} || {
 		echo "Unable to move to /usr/local/bin. Try installing with '-l'."
 	}
