@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 echo "Compiling snowfall.c"
 gcc snowfall.c -o snowfall
 
@@ -33,3 +35,5 @@ else
 		echo "Unable to move to /usr/local/bin. Try installing with '-l'."
 	}
 fi
+
+done

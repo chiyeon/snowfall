@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 if [ "$1" == "-l" ]; then
 	echo "Uninstalling locally"
 	rm $HOME/.local/share/snowfall
@@ -9,3 +11,5 @@ else
 fi
 
 echo "Done."
+
+done

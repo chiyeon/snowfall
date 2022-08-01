@@ -5,7 +5,7 @@
 
 #ifdef _WIN32						// sleep
 #include <windows.h>
-#define CLEAR() printf("\e")
+#define CLEAR() printf("\033c")
 #define SLEEP(time) Sleep(time)
 #else
 #include <unistd.h>
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
 					world[i] = ' ';
 				}
 			}																						// spawn snowflakes (focus *) under right conditions
-			if(i < worldWidth && world[i + worldWidth] == ' ' && rand() % 100 < snowflakeSpawnChance) 
+			if(i < worldWidth && world[i + worldWidth] == ' ' && rand() % 100 <= snowflakeSpawnChance) 
 				world[i] = rand()%2 == 0 ? '*' : rand()%2 == 0 ? '.' : '+';
 		}
 		SLEEP(sleepDuration);	// sleeeeep
