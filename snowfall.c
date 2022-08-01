@@ -5,7 +5,7 @@
 
 #ifdef _WIN32						// sleep
 #include <windows.h>
-#define CLEAR() system("cls")
+#define CLEAR() printf("\e")
 #define SLEEP(time) Sleep(time)
 #else
 #include <unistd.h>
@@ -13,11 +13,9 @@
 #define SLEEP(time) usleep(time * 1000)
 #endif
 
-int main(int argc, char *argv[]) {
-	int is_arg(char *target, char *arg_short, char *arg_long) {
-		return strcmp(target, arg_short) == 0 || strcmp(target, arg_long) == 0;
-	}
+int is_arg(char *target, char *arg_short, char *arg_long);
 
+int main(int argc, char *argv[]) {
 	int worldWidth = 80, worldHeight = 30, snowflakeSpawnChance = 3, sleepDuration = 300;		// initialize with default values
 	if (argc > 1) {								// if arguments presented, filter & assign as needed
 		for(int i = 0; i < argc - 1; i++) {
@@ -59,3 +57,7 @@ int main(int argc, char *argv[]) {
 	}
 	return 0;
 } // don't forget to make kanye with brandon in ds3 (we forgot :<)
+
+int is_arg(char *target, char *arg_short, char *arg_long) {
+	return strcmp(target, arg_short) == 0 || strcmp(target, arg_long) == 0;
+}

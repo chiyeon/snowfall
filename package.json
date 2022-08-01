@@ -4,7 +4,7 @@
   "description": "a falling snow simulation",
   "main": "index.js",
   "bin": {
-    "snowfall": "snowfall.exe"
+    "snowfall": "index.js"
   },
   "repository": {
     "type": "git",

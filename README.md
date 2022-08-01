@@ -19,7 +19,7 @@
 
 A simple snow-simulation in your terminal! Run and watch as the snow piles up, forming a comforting, even snowscape. Now customizable with optional arguments!
 
-Snowfall currently only has support for unix based operating systems, and requires `gcc` to compile. Windows support is planned.
+Snowfall has support for most linux distros, macOS, and Windows. gcc is required.
 
 # Installation
 ### From npm
@@ -44,7 +44,7 @@ Note: Either of these directories should be in your `$PATH`! If all else fails, 
 If installing on Windows, it is recommended to simply use `npm`. If not, use gcc to compile.
 
 ```console
-gcc -o snowfall.o snowfall.c
+gcc -o snowfall snowfall.c
 ```
 
 # Configuration
