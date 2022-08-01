@@ -1,6 +1,6 @@
 {
   "name": "@chiyeon/snowfall",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a falling snow simulation",
   "main": "index.js",
   "bin": {
