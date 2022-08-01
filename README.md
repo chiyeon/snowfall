@@ -22,7 +22,18 @@ A simple snow-simulation in your terminal! Run and watch as the snow piles up, f
 Snowfall currently only has support for unix based operating systems, and requires `gcc` to compile. Windows support is planned.
 
 # Installation
-Simply run the `install.sh` script to install snowfall to `/usr/local/bin`. 
+### From npm (Universal)
+```console
+npm -g i @chiyeon/snowfall
+```
+
+### From Source (Unix Systems)
+```console
+git clone https://github.com/chiyeon/snowfall
+cd snowfall
+./install.sh
+```
+Running `install.sh` will install to `/usr/local/bin`. Requires sudo priviliges.
 
 If installing locally without sudo, add the `-l` flag to the `install.sh` script to install it in `$HOME/.local/share` instead.
 
